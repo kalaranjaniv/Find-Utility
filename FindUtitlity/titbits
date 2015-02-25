@@ -1,0 +1,52 @@
+ 	 
+ 	 Header files for open
+ 	 ----------------------
+ 	 File description & a file descriptor and the link btwn them
+ 	 #include <sys/types.h>
+     #include <sys/stat.h>
+     #include <fcntl.h>
+
+     Header files for fstat
+     -----------------------
+     #include <sys/types.h>
+     #include <sys/stat.h>
+     
+     #define	S_IFREG		0x8000	/* regular */
+     #define	S_IFLNK		0xA000	/* symbolic link */
+     #define	S_IFMT		0xF000	/* type of file */
+     #define	S_IEXEC		00100	/* execute/search permission, owner */
+     
+     
+     Stat structure : 
+     ---------------
+     mode_t   st_mode;     /* File mode (see mknod(2)) */
+     ino_t    st_ino;      /* Inode number */
+     dev_t    st_dev;      /* ID of device containing */
+     
+     directory entry structure : 
+     ---------------------------
+     typedef struct dirent {
+	ino_t		d_ino;		/* "inode number" of entry */
+	off_t		d_off;		/* offset of disk directory entry */
+	unsigned short	d_reclen;	/* length of this record */
+	char		d_name[1];	/* name of file */
+} dirent_t;
+     
+     
+      The stat()  function  obtains  information  about  the  file
+     pointed  to  by  path. Read, write, or execute permission of
+     the named file is not required, but all  directories  listed
+     in the path name leading to the file must be searchable.
+
+     The lstat() function  obtains  file  attributes  similar  to
+     stat(),  except  when  the named file is a symbolic link; in
+     that case lstat() returns information about the link,  while
+     stat()  returns  information  about the file the link refer-
+     ences.
+
+     The fstat() function obtains information about an open  file
+     known  by  the  file descriptor fildes, obtained from a suc-
+     cessful open(2),  creat(2),  dup(2),  fcntl(2),  or  pipe(2)
+     function.
+     
+     
